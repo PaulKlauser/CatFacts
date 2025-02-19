@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.paulklauser.catfacts.SharedViewModel
+import com.paulklauser.catfacts.UiState
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,7 @@ class MainActivity : ComponentActivity() {
                         val vm: SharedViewModel = viewModel()
                         val uiState by vm.uiState.collectAsState()
                         MainScreen(
-                            catFact = uiState.catFact,
+                            uiState = uiState,
                             onGetCatFact = vm::fetchCatFact
                         )
                     }
@@ -47,11 +48,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen(
     onGetCatFact: () -> Unit,
-    catFact: String?
+    uiState: UiState
 ) {
     Column {
-        catFact?.let {
-            Text(text = it)
+        when (uiState) {
+            is UiState.Loading -> Text(text = "Loading...")
+            is UiState.Initial -> Text(text = "Press the button to get a cat fact")
+            is UiState.Success -> Text(text = "Cat Fact: ${uiState.catFact}")
         }
         Button(onClick = onGetCatFact) {
             Text("Get Cat Fact")
@@ -65,7 +68,7 @@ fun DefaultPreview() {
     MyApplicationTheme {
         MainScreen(
             onGetCatFact = {},
-            catFact = "Cats are cats"
+            uiState = UiState.Initial
         )
     }
 }
