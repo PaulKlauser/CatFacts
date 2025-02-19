@@ -17,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.paulklauser.catfacts.SharedViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
                             .padding(paddingValues),
                         color = MaterialTheme.colorScheme.background
                     ) {
-                        val vm: MainViewModel = viewModel()
+                        val vm: SharedViewModel = viewModel()
                         val uiState by vm.uiState.collectAsState()
                         MainScreen(
                             catFact = uiState.catFact,
