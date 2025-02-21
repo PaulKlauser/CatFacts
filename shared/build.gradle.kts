@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -16,14 +17,21 @@ kotlin {
             }
         }
     }
-    
+
+    val xcframeworkName = "Shared"
+    val xcf = XCFramework(xcframeworkName)
+
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "shared"
+            baseName = xcframeworkName
+
+            // Specify CFBundleIdentifier to uniquely identify the framework
+            binaryOption("bundleId", "org.example.${xcframeworkName}")
+            xcf.add(this)
             isStatic = true
         }
     }
