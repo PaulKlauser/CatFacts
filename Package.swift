@@ -12,7 +12,7 @@ let package = Package(
    targets: [
       .binaryTarget(
          name: "Shared",
-         url: "https://github.com/PaulKlauser/CatFacts/releases/download/0.2/Shared.xcframework.zip",
-         checksum:"702a856e7b3da685670a35431cd8c3e49f70677797b02b95dbe28aa840ee788d")
+         url: "https://github.com/PaulKlauser/CatFacts/releases/download/0.3/Shared.xcframework.zip",
+         checksum:"209777b6a829322d285c635288eb77307ba763cd07e4dae002dde9d2133207ab")
    ]
 )

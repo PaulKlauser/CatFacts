@@ -70,4 +70,7 @@ skie {
     features {
         enableSwiftUIObservingPreview = true
     }
+    build {
+        produceDistributableFramework()
+    }
 }
