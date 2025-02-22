@@ -1,0 +1,3 @@
+[submodule "CatFactsShared"]
+	path = CatFactsShared
+	url = https://github.com/PaulKlauser/CatFactsShared

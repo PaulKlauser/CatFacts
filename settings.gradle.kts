@@ -15,5 +15,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Cat_Facts_KMP"
+includeBuild("CatFactsShared")
 include(":Cat_Facts")
-include(":shared")
